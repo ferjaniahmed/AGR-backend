@@ -1,7 +1,7 @@
 import { IsEmail, IsNotEmpty } from 'class-validator';
 export class UserEntity {
-  id?: string;
-  @IsNotEmpty({})
+  _id?: string;
+  @IsNotEmpty()
   firstName: string;
   lastName: string;
   @IsEmail()

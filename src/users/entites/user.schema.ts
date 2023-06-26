@@ -27,13 +27,9 @@ export class User {
   password: string;
 
   @Prop({ required: true })
-  addres: string;
-
-  @Prop({ required: true })
-  dateOfBrith: Date;
-
+  address: string;
   @Prop()
-  _id: mongoose.Schema.Types.ObjectId;
+  dateOfBirth: Date;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

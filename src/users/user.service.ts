@@ -4,14 +4,19 @@ import { UserDocument } from './entites/user.schema';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectModel } from '@nestjs/mongoose';
+import { HashService } from './hash.service';
+import { UserEntity } from './entites/user.entity';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel('User') private userDocument: Model<UserDocument>) {}
+  constructor(
+    @InjectModel('User') private userDocument: Model<UserDocument>,
+    private hashService: HashService,
+  ) {}
 
-  findAll() {
+  async findAll() {
     try {
-      return this.userDocument.find();
+      return await this.userDocument.find();
     } catch (error) {
       throw new HttpException(
         { reason: 'we dont have users yet !!' },
@@ -20,9 +25,9 @@ export class UserService {
       );
     }
   }
-  findById(id: string) {
+  async findById(id: string) {
     try {
-      return this.userDocument.findById(id);
+      return await this.userDocument.findById(id);
     } catch (error) {
       throw new HttpException(
         { reason: 'user not found' },
@@ -31,24 +36,40 @@ export class UserService {
       );
     }
   }
-  findByEmail(email: string) {
-    return this.userDocument.find({ email: email });
+  async findByEmail(email: string) {
+    return await this.userDocument.findOne({ email: email });
   }
-  create(data: CreateUserDto) {
+  async create(data: CreateUserDto) {
+    const user: UserEntity = (await this.findByEmail(
+      data.email,
+    )) as unknown as UserEntity;
+   // console.log(user);
+    if (user) {
+      throw new HttpException(
+        'This email is already in use',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
     try {
+      data.password = (await this.hashService.hashPassword(
+        data.password,
+      )) as unknown as string;
       const newUser = new this.userDocument(data);
-      return newUser.save();
+
+      return await newUser.save();
     } catch (error) {
       throw new HttpException(
-        { reason: 'check your information' },
+        'check your information',
         HttpStatus.NOT_ACCEPTABLE,
         { cause: error },
       );
     }
   }
-  update(id: string, data: UpdateUserDto) {
+  async update(id: string, data: UpdateUserDto) {
     try {
-      return this.userDocument.updateOne({ _id: id }, data, { new: true });
+      return await this.userDocument.updateOne({ _id: id }, data, {
+        new: true,
+      });
     } catch (error) {
       throw new HttpException(
         { reason: 'check your information' },
@@ -58,9 +79,9 @@ export class UserService {
     }
   }
 
-  delete(id: string) {
+  async delete(id: string) {
     try {
-      return this.userDocument.deleteOne({ _id: id });
+      return await this.userDocument.deleteOne({ _id: id });
     } catch (error) {
       throw new HttpException(
         { reason: 'user not found for delete' },
