@@ -15,17 +15,27 @@ import { ProductService } from './product.service';
 export class ProductController {
   constructor(private productService: ProductService) {}
   @Get()
-  findAll() {}
+  findAll() {
+    return this.productService.findAll();
+  }
 
   @Post()
-  create(@Body() data: CreateFoodDto) {}
+  create(@Body() data: CreateFoodDto) {
+    return this.productService.create(data);
+  }
 
   @Get('/:id')
-  findOne(@Param('id') id: string) {}
+  findOne(@Param('id') id: string) {
+    return this.productService.findOne(id);
+  }
 
   @Patch('/:id')
-  update(@Param('id') id: string, @Body() data: UpdateFoodDto) {}
+  update(@Param('id') id: string, @Body() data: UpdateFoodDto) {
+    return this.productService.update(id, data);
+  }
 
   @Delete('/:id')
-  delete(@Param('id') id: string) {}
+  delete(@Param('id') id: string) {
+    return this.productService.delete(id);
+  }
 }
