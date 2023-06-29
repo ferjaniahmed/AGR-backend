@@ -1,4 +1,5 @@
 import { IsEmail, IsNotEmpty } from 'class-validator';
+import { Role } from './role';
 export class UserEntity {
   _id?: string;
   @IsNotEmpty()
@@ -10,4 +11,5 @@ export class UserEntity {
   password: string;
   address: string;
   dateOfBirth: Date;
+  role: Role;
 }

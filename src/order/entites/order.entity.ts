@@ -7,4 +7,5 @@ export class OrderEntity {
   food: FoodEntity | string;
   client: UserEntity | string;
   isInvoiced: boolean;
+  quantity : number
 }

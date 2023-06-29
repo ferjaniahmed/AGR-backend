@@ -16,6 +16,8 @@ export class Order {
     default: false,
   })
   isInvoiced: boolean;
+  @Prop({ required: true })
+  quantity: number;
 }
 
 export const OrderSchema = SchemaFactory.createForClass(Order);

@@ -1,6 +1,4 @@
-/* eslint-disable prettier/prettier */
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import mongoose from 'mongoose';
 
 export type UserDocument = User & Document;
 
@@ -30,6 +28,9 @@ export class User {
   address: string;
   @Prop()
   dateOfBirth: Date;
+
+  @Prop()
+  role: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
