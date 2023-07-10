@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import mongoose, { Document } from 'mongoose';
+import mongoose, { Document, Mongoose } from 'mongoose';
 import { InvoiceEntity } from 'src/invoice/entities/invoice.entity';
 import { FoodEntity } from 'src/product/entites/food.entity';
 import { UserEntity } from 'src/users/entites/user.entity';
@@ -13,10 +13,6 @@ export class Order {
   client: UserEntity;
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Food' })
   food: FoodEntity;
-  @Prop({
-    default: false,
-  })
-  isInvoiced: boolean;
   @Prop({ required: true })
   quantity: number;
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Invoice', default: null })
