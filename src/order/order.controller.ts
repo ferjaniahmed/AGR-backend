@@ -6,15 +6,22 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { OrderService } from './order.service';
+import { AuthGuard } from '@nestjs/passport';
+import { RoleGuard } from 'src/guards/role.guard';
+import { Roles } from 'src/decorator/role.decorator';
+import { Role } from 'src/users/entites/role';
 
 @Controller('order')
+@UseGuards(AuthGuard(), RoleGuard)
 export class OrderController {
   constructor(private orderService: OrderService) {}
   @Get()
+  @Roles(Role.ADMIN)
   findAll() {
     return this.orderService.findAll();
   }
@@ -35,6 +42,7 @@ export class OrderController {
   }
 
   @Delete('/:id')
+  @Roles(Role.ADMIN)
   delete(@Param('id') id: string) {
     return this.orderService.delete(id);
   }

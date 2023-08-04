@@ -3,9 +3,12 @@ import { ProductController } from './product.controller';
 import { ProductService } from './product.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { FoodSchema } from './entites/food.schema';
+import { AuthModule } from 'src/auth/auth.module';
+import { RoleGuard } from 'src/guards/role.guard';
 
 @Module({
   imports: [
+    AuthModule,
     MongooseModule.forFeature([
       {
         name: 'Food',
@@ -14,7 +17,7 @@ import { FoodSchema } from './entites/food.schema';
     ]),
   ],
   controllers: [ProductController],
-  providers: [ProductService],
+  providers: [ProductService, RoleGuard],
   exports: [ProductService],
 })
 export class ProductModule {}

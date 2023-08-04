@@ -3,7 +3,9 @@ import { Document } from 'mongoose';
 
 export type FoodDocument = Document & Food;
 
-@Schema()
+@Schema({
+  timestamps: true,
+})
 export class Food {
   @Prop({ required: true })
   description: string;
