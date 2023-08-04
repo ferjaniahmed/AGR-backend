@@ -5,7 +5,9 @@ import { FoodEntity } from 'src/product/entites/food.entity';
 import { UserEntity } from 'src/users/entites/user.entity';
 
 export type OrderDocument = Document & Order;
-@Schema()
+@Schema({
+  timestamps: true,
+})
 export class Order {
   @Prop({ required: true })
   dateOrder: Date;

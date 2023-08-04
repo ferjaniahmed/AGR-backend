@@ -18,6 +18,8 @@ import { InvoiceModule } from './invoice/invoice.module';
     InvoiceModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+  ],
 })
 export class AppModule {}
