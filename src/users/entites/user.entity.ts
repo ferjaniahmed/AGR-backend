@@ -9,7 +9,10 @@ export class UserEntity {
   email: string;
   @IsNotEmpty()
   password: string;
+  @IsNotEmpty()
   address: string;
   dateOfBirth: Date;
   role: Role;
+  @IsNotEmpty()
+  phone: string;
 }

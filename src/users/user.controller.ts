@@ -18,16 +18,17 @@ import { AuthGuard } from '@nestjs/passport';
 //import { AuthGuard } from 'src/guards/jwt.guard';
 
 @Controller('user')
-@UseGuards(AuthGuard(), RoleGuard)
 export class UserController {
   constructor(private userService: UserService) {}
 
   @Get('')
   @Roles(Role.ADMIN)
+  @UseGuards(AuthGuard(), RoleGuard)
   findAll() {
     return this.userService.findAll();
   }
   @Get('/:id')
+  @UseGuards(AuthGuard(), RoleGuard)
   findOne(@Param('id') id: string) {
     return this.userService.findById(id);
   }
@@ -36,12 +37,14 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
   @Patch('/:id')
+  @UseGuards(AuthGuard(), RoleGuard)
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(id, updateUserDto);
   }
 
   @Delete('/:id')
   @Roles(Role.ADMIN)
+  @UseGuards(AuthGuard(), RoleGuard)
   delete(@Param('id') id: string) {
     return this.userService.delete(id);
   }
