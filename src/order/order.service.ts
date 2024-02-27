@@ -75,4 +75,19 @@ export class OrderService {
       );
     }
   }
+
+  //not sure 
+  async createMany(orders : CreateOrderDto[]){
+    try{
+      //console.log(orders)
+      return await this.orderDocument.create(orders)
+    }catch(error){
+      throw new HttpException(
+        { reason: error._message,status  :HttpStatus.BAD_REQUEST },
+        HttpStatus.BAD_REQUEST,
+        { cause: error },
+        
+      );
+    }
+  }
 }

@@ -5,11 +5,9 @@ import { UserModule } from 'src/users/user.module';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constant';
 //import { AuthGuard } from 'src/guards/jwt.guard';
-import { UserService } from 'src/users/user.service';
-import { HashService } from 'src/users/hash.service';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from 'src/strategy/jwt.strategy';
-import mongoose from 'mongoose';
+
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserSchema } from 'src/users/entites/user.schema';
 

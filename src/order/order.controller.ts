@@ -42,8 +42,12 @@ export class OrderController {
   }
 
   @Delete('/:id')
-  @Roles(Role.ADMIN)
   delete(@Param('id') id: string) {
     return this.orderService.delete(id);
+  }
+  
+  @Post("create-many")
+  createMany(@Body() orders : CreateOrderDto[]){
+    return this.orderService.createMany(orders)
   }
 }

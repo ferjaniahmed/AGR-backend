@@ -9,14 +9,14 @@ export type OrderDocument = Document & Order;
   timestamps: true,
 })
 export class Order {
-  @Prop({ required: true })
-  dateOrder: Date;
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
   client: UserEntity;
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Food' })
   food: FoodEntity;
   @Prop({ required: true })
   quantity: number;
+  @Prop({ required: true , default:false })
+  isConfirmed: boolean;
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Invoice', default: null })
   invoice: InvoiceEntity;
 }

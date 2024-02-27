@@ -15,6 +15,8 @@ export class Food {
   price: number;
   @Prop({ required: false })
   image: string;
+  @Prop({ required: false })
+  type: string;
 }
 
 export const FoodSchema = SchemaFactory.createForClass(Food);

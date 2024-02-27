@@ -16,7 +16,7 @@ export class UserService {
 
   async findAll() {
     try {
-      return await this.userDocument.find();
+      return await this.userDocument.find().select(["-password","-createdAt", "-updatedAt"]);
     } catch (error) {
       throw new HttpException(
         { reason: 'we dont have users yet !!' },
@@ -27,7 +27,7 @@ export class UserService {
   }
   async findById(id: string) {
     try {
-      return await this.userDocument.findById(id);
+      return await this.userDocument.findById(id).select(["-password","-createdAt", "-updatedAt"]);
     } catch (error) {
       throw new HttpException(
         { reason: 'user not found' },

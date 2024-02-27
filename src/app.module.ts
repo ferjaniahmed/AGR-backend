@@ -10,7 +10,7 @@ import { InvoiceModule } from './invoice/invoice.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/AGV'),
+    MongooseModule.forRoot('mongodb://127.0.0.1:27017/AGV'),
     UserModule,
     AuthModule,
     ProductModule,

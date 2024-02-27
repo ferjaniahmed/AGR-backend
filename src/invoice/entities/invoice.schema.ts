@@ -5,7 +5,7 @@ import { UserEntity } from 'src/users/entites/user.entity';
 
 export type InviceDocument = Document;
 
-@Schema()
+@Schema({timestamps : true})
 export class Invoice {
   @Prop({ required: true })
   dateInvoice: Date;
