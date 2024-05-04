@@ -5,7 +5,7 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-### AGR
+# AGR
     <p align="center">
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
@@ -24,7 +24,7 @@
 
 ## Description
 
-conception et développement d'une application BackEnd de gestion des restaurants utilisés [![My Skills](https://skillicons.dev/icons?i=nestjs)](https://skillicons.dev) (API)
+conception et développement d'une application BackEnd de gestion des restaurants utilisés [nestjs](https://docs.nestjs.com/) (API) .
 
 ## Installation
 
