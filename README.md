@@ -28,6 +28,7 @@ conception et développement d'une application BackEnd de gestion des restaurant
 ## Installation
 
 ```bash
+$ git checkout develop
 $ npm install
 ```
 
