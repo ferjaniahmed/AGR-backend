@@ -28,7 +28,6 @@ conception et développement d'une application BackEnd de gestion des restaurant
 ## Installation
 
 ```bash
-$ git checkout develop
 $ npm install
 ```
 
@@ -45,18 +44,6 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
 
 ## Support
 
